@@ -13,13 +13,26 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 
+from seconds import Seconds
+
+from kivy.core.window import Window
+
+
 name1 = ''
 name2 = ''
 name3 = ''
 name4 = ''
 name5 = ''
 
-from seconds import Seconds
+black = (0, 0, 0, 1)
+blue = (0.3, 0.95, 0.9, 1)
+blue_1 = (0, 0, 1, 1)
+
+Window.clearcolor = blue
+
+txt = '[color=black]' + 'Введите имя:' + '[/color]'
+lbl1 = Label(text=txt, markup=True)
+
 
 def check_int(number):
     try:
@@ -45,24 +58,25 @@ class MainScreen(Screen):
         global name2
 
         h_line = BoxLayout(orientation = 'vertical', padding = 8, spacing = 8)
-        label = Label(text = t_x)
+        label = Label(text = t_x, color = black)
         h_line.add_widget(label)
 
         v_line_1 = BoxLayout(size_hint = (0.8, None), height = '30sp')
-        label_1 = Label(text = 'Возраст:', pos_hint = {'center_x': 0.1})
+        label_1 = Label(text = 'Возраст:', pos_hint = {'center_x': 0.1}, color = black)
         v_line_1.add_widget(label_1)
         self.textinput_1 = TextInput(text = '0', focus = False, multiline = False)
         v_line_1.add_widget(self.textinput_1)
         h_line.add_widget(v_line_1)
 
         v_line_2 = BoxLayout(size_hint = (0.8, None), height = '30sp')
-        label_2 = Label(text = 'Имя:', pos_hint = {'center_x': 0.1})
+        label_2 = Label(text = 'Имя:', pos_hint = {'center_x': 0.1}, color = black)
         v_line_2.add_widget(label_2)
         self.textinput_2 = TextInput(text = '_', multiline = False)
         v_line_2.add_widget(self.textinput_2)
         h_line.add_widget(v_line_2)
 
         self.bt = Button(text = 'Начать', size_hint = (1, 0.2))
+        self.bt.background_color = blue_1
         self.bt.on_press = self.next
         h_line.add_widget(self.bt)
 
@@ -86,19 +100,20 @@ class Screen2(Screen):
         super().__init__(**kwargs)
         h_line = BoxLayout(orientation='vertical', padding=8, spacing=8)
 
-        label = Label(text=txt_test1, size_hint=(1, 0.4))
+        label = Label(text=txt_test1, size_hint=(1, 0.4), color = black)
         h_line.add_widget(label)
 
         self.timer = Seconds(15)
         h_line.add_widget(self.timer)
 
         v_line = BoxLayout(size_hint=(0.8, None), height='30sp')
-        v_line.add_widget(Label(text='Результат:', halign='right'))
+        v_line.add_widget(Label(text='Результат:', halign='right', color = black))
         self.textinput = TextInput(text='0', multiline=False)
         v_line.add_widget(self.textinput)
         h_line.add_widget(v_line)
 
         self.btn = Button(text='Начать', size_hint=(1, 0.2))
+        self.btn.background_color = blue_1
         self.btn.on_press = self.start_timer
         h_line.add_widget(self.btn)
 
@@ -128,13 +143,14 @@ class Screen3(Screen):
         super().__init__(**kwargs)
         h_line = BoxLayout(orientation='vertical', padding=8, spacing=8)
 
-        label = Label(text=txt_sits)
+        label = Label(text=txt_sits, color = black)
         h_line.add_widget(label)
 
         self.timer = Seconds(45)
         h_line.add_widget(self.timer)
 
         self.btn = ScrButton(self, text='Начать', direction='left', goal='c', size_hint=(1, 0.4))
+        self.btn.background_color = blue_1
         h_line.add_widget(self.btn)
 
         self.add_widget(h_line)
@@ -161,7 +177,7 @@ class Screen4(Screen):
         self.stage = 0
 
         h_line = BoxLayout(orientation='vertical', padding=8, spacing=8)
-        self.label = Label(text='Считайте пульс')
+        self.label = Label(text='Считайте пульс', color = black)
         h_line.add_widget(self.label)
 
         self.timer = Seconds(15)
@@ -180,6 +196,7 @@ class Screen4(Screen):
         h_line.add_widget(v_line2)
 
         self.btn = ScrButton(self, text='Начать', direction='left', goal='d', size_hint=(1, 0.3))
+        self.btn.background_color = blue_1
         h_line.add_widget(self.btn)
 
         self.add_widget(h_line)
@@ -231,10 +248,11 @@ class Screen4(Screen):
 class Screen5(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.instr = Label(text='Результат:')
+        self.instr = Label(text='Результат:', color = black)
         h_line = BoxLayout(orientation='vertical', padding=8, spacing=8)
         h_line.add_widget(self.instr)
         self.btn = ScrButton(self, text='Закончить', direction='left', goal='main', size_hint=(1, 0.4))
+        self.btn.background_color = blue_1
         h_line.add_widget(self.btn)
         self.add_widget(h_line)
 
